@@ -1,0 +1,323 @@
+Imports System.Data.SqlClient
+
+Public Class Form1
+    Dim con As SqlConnection
+    Dim com As SqlCommand
+    Dim dr As SqlDataReader
+    Dim gen As String
+    Dim str As String
+    Dim getuser As String
+    Dim da As SqlDataAdapter
+    Dim dt As DataTable
+    Dim dv As DataView
+    Dim blood As Object
+    Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
+        If comboBox1.SelectedIndex = "0" Then
+            If textBox1.Text = "Amir" And textBox2.Text = "Ghaffar" Then
+                MessageBox.Show("Welcome Admin")
+
+                comboBox1.Text = "--Select Type--"
+                textBox1.Text = ""
+                textBox2.Text = ""
+                Hide()
+                Home.ShowDialog()
+
+            Else
+                MessageBox.Show("login fail")
+            End If
+
+
+        ElseIf comboBox1.SelectedIndex = "1" Then
+            con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\w10\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\mydb.mdf;Integrated Security=True")
+            con.Open()
+            Try
+                getuser = "select name from doctor where name='" & textBox1.Text & "' and pass='" & textBox2.Text & "'"
+                com = New SqlCommand(getuser, con)
+                dr = com.ExecuteReader()
+                If (dr.Read()) Then
+                    MsgBox("Welcome Doctor.")
+
+                    comboBox1.Text = "--Select Type--"
+                    textBox1.Text = ""
+                    textBox2.Text = ""
+                    Hide()
+                    HomeD.ShowDialog()
+
+                Else
+                    MsgBox("something Wrong")
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End If
+
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+End Class
+
+
+Imports System.Data.SqlClient
+
+Public Class Form1
+    Dim con As SqlConnection
+    Dim com As SqlCommand
+    Dim dr As SqlDataReader
+    Dim gen As String
+    Dim str As String
+    Dim getuser As String
+    Dim da As SqlDataAdapter
+    Dim dt As DataTable
+    Dim dv As DataView
+    Dim blood As Object
+    Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
+        If comboBox1.SelectedIndex = "0" Then
+            If textBox1.Text = "Amir" And textBox2.Text = "Ghaffar" Then
+                MessageBox.Show("Welcome Admin")
+
+                comboBox1.Text = "--Select Type--"
+                textBox1.Text = ""
+                textBox2.Text = ""
+                Hide()
+                Home.ShowDialog()
+
+            Else
+                MessageBox.Show("login fail")
+            End If
+
+
+        ElseIf comboBox1.SelectedIndex = "1" Then
+            con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\w10\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\mydb.mdf;Integrated Security=True")
+            con.Open()
+            Try
+                getuser = "select name from doctor where name='" & textBox1.Text & "' and pass='" & textBox2.Text & "'"
+                com = New SqlCommand(getuser, con)
+                dr = com.ExecuteReader()
+                If (dr.Read()) Then
+                    MsgBox("Welcome Doctor.")
+
+                    comboBox1.Text = "--Select Type--"
+                    textBox1.Text = ""
+                    textBox2.Text = ""
+                    Hide()
+                    HomeD.ShowDialog()
+
+                Else
+                    MsgBox("something Wrong")
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End If
+
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+End Class
+
+
+Imports System.Data.SqlClient
+
+Public Class DoctorRegistration
+    Dim con As SqlConnection
+    Dim com As SqlCommand
+    Dim dr As SqlDataReader
+    Dim gen As String
+    Dim str As String
+    Dim getuser As String
+    Dim da As SqlDataAdapter
+    Dim dt As DataTable
+    Dim dv As DataView
+    Dim blood As Object
+    Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
+        con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\w10\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\mydb.mdf;Integrated Security=True")
+        con.Open()
+        str = "insert into doctor(id, name,gen,mob,email,dob,addr,desig,j_date,b_gr,pass) values('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + textBox5.Text + "','" + textBox6.Text + "','" + textBox7.Text + "','" + textBox8.Text + "','" + textBox9.Text + "','" + textBox10.Text + "','" + textBox11.Text + "')"
+        com = New SqlCommand(str, con)
+        com.ExecuteNonQuery()
+        MsgBox("New Doctor Details Inserted Successfully..")
+        textBox1.Text = ""
+        textBox2.Text = ""
+        textBox3.Text = ""
+        textBox4.Text = ""
+        textBox5.Text = ""
+        textBox6.Text = ""
+        textBox7.Text = ""
+        textBox8.Text = ""
+        textBox9.Text = ""
+        textBox10.Text = ""
+        textBox11.Text = ""
+        con.Close()
+    End Sub
+
+    Private Sub DoctorRegistration_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\w10\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\mydb.mdf;Integrated Security=True")
+        con.Open()
+        Try
+            str = "select nextID=MAX(Id)+1 from doctor"
+            com = New SqlCommand(str, con)
+            dr = com.ExecuteReader()
+            If dr.Read() Then
+                textBox1.Text = dr.GetValue(0).ToString()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+
+    End Sub
+End Class
+
+
+
+Imports System.Data.SqlClient
+
+Public Class ViewStock
+    Dim con As SqlConnection
+    Dim com As SqlCommand
+    Dim dr As SqlDataReader
+    Dim gen As String
+    Dim str As String
+    Dim getuser As String
+    Dim da As SqlDataAdapter
+    Dim dt As DataTable
+    Dim dv As DataView
+    Dim blood As Object
+    Private Sub ViewStock_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'BloodbankDataSet5.stock' table. You can move, or remove it, as needed.
+        Me.StockTableAdapter.Fill(Me.BloodbankDataSet5.stock)
+        Using con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\w10\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\mydb.mdf;Integrated Security=True")
+            str = "select * from donorreg"
+            com = New SqlCommand(str, con)
+            da = New SqlDataAdapter(com)
+            dt = New DataTable()
+            dv = New DataView()
+            da.Fill(dt)
+            DataGridView1.DataSource = New BindingSource(dt, blood)
+        End Using
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+
+Public Class BloodDonor
+    Dim con As SqlConnection
+    Dim com As SqlCommand
+    Dim dr As SqlDataReader
+    Dim gen As String
+    Dim str As String
+    Dim getuser As String
+    Dim da As SqlDataAdapter
+    Dim dt As DataTable
+    Dim dv As DataView
+    Dim blood As Object
+    Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
+        con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=c:\users\dell\documents\visual studio 2015\Projects\BloodBankManagementSystemVB\BloodBankManagementSystemVB\bloodbank.mdf;Integrated Security=True")
+        con.Open()
+        str = "insert into BDonor(d_name,gen,b_gr,age,date) values('" + textBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + textBox5.Text + "','" + textBox6.Text + "')"
+        com = New SqlCommand(str, con)
+        com.ExecuteNonQuery()
+        MsgBox("Blood Donor Details Inserted Successfully..")
+        textBox2.Text = ""
+        textBox3.Text = ""
+        textBox4.Text = ""
+        textBox5.Text = ""
+        textBox6.Text = ""
+
+        con.Close()
+    End Sub
+
+    Private Sub BloodDonor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'BloodbankDataSet.BDonor' table. You can move, or remove it, as needed.
+        Me.BDonorTableAdapter.Fill(Me.BloodbankDataSet.BDonor)
+        con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=c:\users\dell\documents\visual studio 2015\Projects\BloodBankManagementSystemVB\BloodBankManagementSystemVB\bloodbank.mdf;Integrated Security=True")
+        con.Open()
+        Try
+            str = "select nextID=MAX(Id)+1 from BDonor"
+            com = New SqlCommand(str, con)
+            dr = com.ExecuteReader()
+            If dr.Read() Then
+                textBox1.Text = dr.GetValue(0).ToString()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Using con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=c:\users\dell\documents\visual studio 2015\Projects\BloodBankManagementSystemVB\BloodBankManagementSystemVB\bloodbank.mdf;Integrated Security=True")
+            str = "select * from BDonor"
+            com = New SqlCommand(str, con)
+            da = New SqlDataAdapter(com)
+            dt = New DataTable()
+            dv = New DataView()
+            da.Fill(dt)
+            DataGridView1.DataSource = New BindingSource(dt, blood)
+        End Using
+    End Sub
+
+    Private Sub button2_Click(sender As Object, e As EventArgs) Handles button2.Click
+        textBox2.Text = ""
+        textBox3.Text = ""
+        textBox4.Text = ""
+        textBox5.Text = ""
+        textBox6.Text = ""
+    End Sub
+End Class
+
+
+Imports System.Data.SqlClient
+
+Public Class Camp
+    Dim con As SqlConnection
+    Dim com As SqlCommand
+    Dim dr As SqlDataReader
+    Dim gen As String
+    Dim str As String
+    Dim getuser As String
+    Dim da As SqlDataAdapter
+    Dim dt As DataTable
+    Dim dv As DataView
+    Dim blood As Object
+    Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
+        con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\w10\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\mydb.mdf;Integrated Security=True")
+        con.Open()
+        str = "insert into camp(id, c_name,location,city,w_day) values('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + textBox5.Text + "')"
+        com = New SqlCommand(str, con)
+        com.ExecuteNonQuery()
+        MsgBox("Camp Details Inserted Successfully..")
+        textBox1.Text = ""
+        textBox2.Text = ""
+        textBox3.Text = ""
+        textBox4.Text = ""
+        textBox5.Text = ""
+
+        con.Close()
+    End Sub
+
+    Private Sub Camp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'BloodbankDataSet1.camp' table. You can move, or remove it, as needed.
+        Me.CampTableAdapter.Fill(Me.BloodbankDataSet1.camp)
+        con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\w10\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\mydb.mdf;Integrated Security=True")
+        con.Open()
+        Try
+            str = "select nextID=MAX(Id)+1 from camp"
+            com = New SqlCommand(str, con)
+            dr = com.ExecuteReader()
+            If dr.Read() Then
+                textBox1.Text = dr.GetValue(0).ToString()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Using con = New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\w10\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\mydb.mdf;Integrated Security=True")
+            str = "select * from camp"
+            com = New SqlCommand(str, con)
+            da = New SqlDataAdapter(com)
+            dt = New DataTable()
+            dv = New DataView()
+            da.Fill(dt)
+            DataGridView1.DataSource = New BindingSource(dt, blood)
+        End Using
+    End Sub
+End Class
