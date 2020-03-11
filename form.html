@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> responsive  Form </title>
+	<style>
+	input[type=text] , select , textarea {
+	width:100%;
+	padding: 12px;
+	border: 3px solid #bbb;
+	resize:vertical;
+	border-radius: 4px;
+}
+input[type=search]{
+	
+	width:  40%;
+	background-image: url('Assets/s1.png');
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	transition: width 0.4s ease-in-out;
+	box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
+  font-size: 17px;
+  padding: 12px 20px 12px 40px;
+}
+input[type=search]:focus{
+	width: 100%;
+	 border: 2px solid red;
+	 transition: width 0.4s ease-in-out;
+	 background-image: url('s2.png');
+	background-position: 10px 10px;
+background-repeat: no-repeat;
+}
+label{
+	padding: 12px 12px 12px 0;
+	display: inline-block;
+}
+input[type=submit]{
+	background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  width: 100%
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.container{
+	border-radius: 5px;
+	background-color: #f2f2f2;
+  padding: 20px;
+}
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+@media screen and (max-width: 600px){
+	.col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+	<h2 style="text-align: center;background-color: #ecbbbe"> My Signup form :</h2>
+<div class="container">
+	<form action="#home" method="post" target="_blank">
+		<div class="row">
+			<div class="col-25"> <label> First name </label></div>
+			<div class="col-75"> <input type="text" name="fname" placeholder="Enter your name"..></div>
+		</div>
+		<div class="row">
+			<div class="col-25"> <label> Last name </label></div>
+			<div class="col-75"> <input type="text" name="lname" placeholder="Enter your last name"..></div>
+		</div>
+
+		<div class="row">
+			<div class="col-25"> <label> Select Course </label></div>
+			<div class="col-75"> <input type="search" class="search"  name="serch" placeholder="Search here"..></div>
+		</div>
+
+			<div class="row">
+			<div class="col-25"> <label> Country </label></div>
+			<div class="col-75"> <select id="country" name="country">
+				<option value="pakistan">Pakistan</option>
+				<option value="india"> India </option>
+				<option value="soudia"> Soudia Arab</option>
+			</select></div>
+		</div>
+ 		
+		<div class="row">
+			<div class="col-25"> <label> Address </label></div>
+			<div class="col-75"> <input type="text" name="address" placeholder="Enter your address"..></div>
+		</div>
+		<div class="row">
+			<div class="col-25"> <label> G Mail </label></div>
+			<div class="col-75"> <input type="email" name="gmail" placeholder="Enter your Mail"..></div>
+		</div>
+		<div class="row">
+			<div class="col-25"> <label> contact number  </label></div>
+			<div class="col-75"> <input type="number" name="number" placeholder="Enter your number"..></div>
+		</div>
+		<div class="row">
+			<div class="col-25"> <label> Subject </label></div>
+			<div class="col-75"> <textarea id="subject" name="subject" placeholder="Enter something" style="height: 200px"></textarea></div>
+		</div>
+		<div class="row">
+			<div class="col-25"> <label>  </label></div>
+			<div class="col-75"> <input type="submit" name="Submit"></div>
+		</div>
+	</form>
+</div>
+</body>
+</html>
